@@ -1,5 +1,7 @@
 import mxnet as mx
 import symbol_utils
+from config import config
+
 # Coded by Lin Xiong on Sep-25, 2018
 # Referred to the pytorch code https://github.com/Youngkl0726/Convolutional-Block-Attention-Module/blob/master/CBAMNet.py, 
 # More detailed information can be found in the following paper:
@@ -207,7 +209,10 @@ def CBAMNet(units, num_stages, filter_list, num_classes, bottle_neck, **kwargs):
     fc1._set_attr(mirror_stage='True')
     return fc1
 
-def get_symbol(num_classes, num_layers, **kwargs):
+def get_symbol():    # num_classes, num_layers, **kwargs
+
+    num_classes = config.emb_size
+    num_layers = config.num_layers
 
     if num_layers >= 101:
         filter_list = [64, 256, 512, 1024, 2048]
@@ -240,6 +245,17 @@ def get_symbol(num_classes, num_layers, **kwargs):
         units = [3, 30, 48, 8]
     else:
         raise ValueError("no experiments done on num_layers {}, you can do it yourself".format(num_layers))
+
+    kwargs = {'bn_mom': config.bn_mom,
+              'workspace': config.workspace,
+              'eps': config.eps,
+              'memonger': config.memonger,
+              'version_input': config.net_input,
+              'version_output': config.net_output,
+              'version_act': config.net_act,
+              'ibn': False,
+              'input_shape': None
+              }    # 'reduction': 16,
 
     return CBAMNet(units      = units,
                   num_stages  = num_stages,

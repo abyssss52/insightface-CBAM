@@ -7,6 +7,7 @@ config = edict()
 config.bn_mom = 0.9
 config.workspace = 256
 config.emb_size = 512
+config.eps = 2e-5
 config.ckpt_embedding = True
 config.net_se = 0
 config.net_act = 'prelu'
@@ -121,7 +122,7 @@ dataset.emore.dataset = 'emore'
 dataset.emore.dataset_path = '../datasets/faces_emore'
 dataset.emore.num_classes = 85742
 dataset.emore.image_shape = (112,112,3)
-dataset.emore.val_targets = ['lfw', 'cfp_fp', 'agedb_30']
+dataset.emore.val_targets = ['lfw']  # , 'cfp_fp', 'agedb_30'
 
 dataset.retina = edict()
 dataset.retina.dataset = 'retina'

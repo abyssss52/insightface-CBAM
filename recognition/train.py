@@ -21,6 +21,7 @@ import flops_counter
 sys.path.append(os.path.join(os.path.dirname(__file__), 'eval'))
 import verification
 sys.path.append(os.path.join(os.path.dirname(__file__), 'symbol'))
+import fcbamnet
 import fresnet
 import fmobilefacenet
 import fmobilenet
