@@ -194,7 +194,7 @@ def CBAMNet(units, num_stages, filter_list, num_classes, bottle_neck, **kwargs):
                              name='stage%d_unit%d' % (i + 1, 1), bottle_neck=bottle_neck, **kwargs)
       else:
         body = CBAM_Residual_unit(body, filter_list[i+1], reduction, (2, 2), False,
-          name='stage%d_unit%d' % (i + 1, 1), bottle_neck=bottle_neck, **kwargs)
+                             name='stage%d_unit%d' % (i + 1, 1), bottle_neck=bottle_neck, **kwargs)
       # import pdb
       # pdb.set_trace()
       body._set_attr(mirror_stage='True')

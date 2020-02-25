@@ -135,6 +135,20 @@ dataset.ms1m_05822x_all.num_classes = 346
 dataset.ms1m_05822x_all.image_shape = (112, 112, 3)
 dataset.ms1m_05822x_all.val_targets = ['lfw', 'lfw_mask', 'lfw_half_mask']
 
+dataset.ms1m_0582x_all = edict()
+dataset.ms1m_0582x_all.dataset = 'ms1m_0582x_all'
+dataset.ms1m_0582x_all.dataset_path = '../datasets/ms1m_0582x_all'
+dataset.ms1m_0582x_all.num_classes = 7346
+dataset.ms1m_0582x_all.image_shape = (112, 112, 3)
+dataset.ms1m_0582x_all.val_targets = ['lfw', 'lfw_mask', 'lfw_half_mask']
+
+dataset.ms1m_all_all = edict()
+dataset.ms1m_all_all.dataset = 'ms1m_all_all'
+dataset.ms1m_all_all.dataset_path = '../datasets/ms1m_all_all'
+dataset.ms1m_all_all.num_classes = 85742
+dataset.ms1m_all_all.image_shape = (112, 112, 3)
+dataset.ms1m_all_all.val_targets = ['lfw', 'lfw_mask', 'lfw_half_mask']
+
 dataset.retina = edict()
 dataset.retina.dataset = 'retina'
 dataset.retina.dataset_path = '../datasets/ms1m-retinaface-t1'
