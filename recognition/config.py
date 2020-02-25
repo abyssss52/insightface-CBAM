@@ -37,6 +37,10 @@ network.cbam100 = edict()
 network.cbam100.net_name = 'fcbamnet'
 network.cbam100.num_layers = 100
 
+network.cbam50 = edict()
+network.cbam50.net_name = 'fcbamnet'
+network.cbam50.num_layers = 50
+
 network.r100 = edict()
 network.r100.net_name = 'fresnet'
 network.r100.num_layers = 100

@@ -140,9 +140,10 @@ def CBAM_Residual_unit(data, num_filter, reduction, stride, dim_match, name, bot
           bn1 = IBN_block(data=data, num_filter=num_filter, name='%s_c3x3' %(name))
         else:
           bn1 = BN(data, momentum=bn_mom, fix_gamma=False, eps=eps, name='%s_c3x3' %(name), suffix='')
-        conv1 = Conv(bn1, num_filter=num_filter, kernel=(3, 3), stride=(1, 1), pad=(1, 1), num_group=1, workspace=workspace, name='%s_c3x3_a' %(name), suffix='')
-        conv2 = BN_Act_Conv(conv1, num_filter=num_filter, kernel=(3, 3), stride=stride, pad=(1, 1), num_group=1, 
-                                         momentum=bn_mom, workspace=workspace, name='%s_c3x3_b' %(name))
+        conv1 = Conv(bn1, num_filter=num_filter, kernel=(3, 3), stride=(1, 1), pad=(1, 1), num_group=1,
+                     workspace=workspace, name='%s_c3x3_a' %(name), suffix='')
+        conv2 = BN_Act_Conv(conv1, num_filter=num_filter, kernel=(3, 3), stride=stride, pad=(1, 1),
+                            num_group=1, momentum=bn_mom, workspace=workspace, name='%s_c3x3_b' %(name))
         conv2 = BN(conv2, momentum=bn_mom, fix_gamma=False, eps=eps, name='%s_bn_c3x3_b' %(name))
         # import pdb
         # pdb.set_trace()
@@ -152,7 +153,8 @@ def CBAM_Residual_unit(data, num_filter, reduction, stride, dim_match, name, bot
         if dim_match:
             shortcut = data
         else:
-            conv1sc = Conv(data, num_filter=num_filter, kernel=(1, 1), stride=stride, pad=(0, 0), num_group=1, workspace=workspace, name='%s_conv1sc' %(name), suffix='')
+            conv1sc = Conv(data, num_filter=num_filter, kernel=(1, 1), stride=stride, pad=(0, 0),
+                           num_group=1, workspace=workspace, name='%s_conv1sc' %(name), suffix='')
             shortcut = BN(conv1sc, momentum=bn_mom, fix_gamma=False, eps=eps, name='%s_bn_sc' %(name))
         if memonger:
             shortcut._set_attr(mirror_stage='True')
@@ -173,7 +175,7 @@ def CBAMNet(units, num_stages, filter_list, num_classes, bottle_neck, **kwargs):
     print(version_input, version_output, act_type)
     num_unit = len(units)
     assert(num_unit == num_stages)
-    data = mx.sym.Variable(name='data', shape=input_shape)
+    data = mx.sym.Variable(name='data') # , shape=input_shape
     data = mx.sym.identity(data=data, name='id')
     data = data-127.5
     data = data*0.0078125
