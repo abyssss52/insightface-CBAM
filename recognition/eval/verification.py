@@ -581,7 +581,7 @@ if __name__ == '__main__':
       for model in nets:
         acc1, std1, acc2, std2, xnorm, embeddings_list = test(ver_list[i], model, args.batch_size, args.nfolds)
         print('[%s]XNorm: %f' % (ver_name_list[i], xnorm))
-        print('[%s]Accuracy: %1.5f+-%1.5f' % (ver_name_list[i], acc1, std1))
+        # print('[%s]Accuracy: %1.5f+-%1.5f' % (ver_name_list[i], acc1, std1))
         print('[%s]Accuracy-Flip: %1.5f+-%1.5f' % (ver_name_list[i], acc2, std2))
         results.append(acc2)
       print('Max of [%s] is %1.5f' % (ver_name_list[i], np.max(results)))
