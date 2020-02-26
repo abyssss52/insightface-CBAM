@@ -98,7 +98,7 @@ def calculate_roc(thresholds, embeddings1, embeddings2, actual_issame, nrof_fold
         for threshold_idx, threshold in enumerate(thresholds):
             _, _, acc_train[threshold_idx] = calculate_accuracy(threshold, dist[train_set], actual_issame[train_set])
         best_threshold_index = np.argmax(acc_train)
-        #print('threshold', thresholds[best_threshold_index])
+        print('roc threshold:', thresholds[best_threshold_index])
         for threshold_idx, threshold in enumerate(thresholds):
             tprs[fold_idx,threshold_idx], fprs[fold_idx,threshold_idx], _ = calculate_accuracy(threshold, dist[test_set], actual_issame[test_set])
         _, _, accuracy[fold_idx] = calculate_accuracy(thresholds[best_threshold_index], dist[test_set], actual_issame[test_set])
@@ -511,8 +511,8 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='do verification')
   # general
   parser.add_argument('--data-dir', default='', help='')
-  parser.add_argument('--model', default='../model/softmax,50', help='path to load model.')
-  parser.add_argument('--target', default='lfw,cfp_ff,cfp_fp,agedb_30', help='test targets.')
+  parser.add_argument('--model', default='../models/cbam100-arcface-ms1m_05822x_all/model,23', help='path to load model.')
+  parser.add_argument('--target', default='lfw,lfw_mask,lfw_half_mask', help='test targets.')
   parser.add_argument('--gpu', default=0, type=int, help='gpu id')
   parser.add_argument('--batch-size', default=32, type=int, help='')
   parser.add_argument('--max', default='', type=str, help='')
